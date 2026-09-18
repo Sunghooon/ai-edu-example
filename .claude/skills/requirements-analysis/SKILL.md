@@ -124,7 +124,8 @@ description: ISO 26262와 Automotive SPICE(A-SPICE) 4.1(SYS.1/SYS.2/SWE.1)을 �
 
 ## 8. 추적성 확보 방안
 
-- **ID 체계**:
+- **ID 체계 우선순위**: 고객/상위 산출물이 이미 요구사항 ID 체계를 예고하거나 부여했다면(예: 고객 요구사양서의 추적성표가 특정 ID를 미리 지정) 그것을 그대로 사용하고, 아래 기본 체계로 임의로 바꾸지 않는다. 프로젝트별 채택 ID는 CLAUDE.md에 기록한다.
+- **기본 ID 체계** (고객 지정 ID가 없을 때):
   - `REQ-STK-nnn` 이해관계자 요구사항
   - `REQ-SYS-Fnnn` / `REQ-SYS-Nnnn` 시스템 기능/비기능 요구사항
   - `REQ-SW-Fnnn` / `REQ-SW-Nnnn` 소프트웨어 기능/비기능 요구사항
