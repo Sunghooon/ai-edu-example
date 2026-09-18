@@ -10,8 +10,12 @@ description: A-SPICE 4.1(SYS.3/SWE.2)과 ISO 26262 Part 6(소프트웨어 수준
 ## 0. 템플릿 우선순위 (필수 선행 절차)
 
 1. 사용자가 이번 대화에서 직접 제시한 아키텍처 설계서 양식이 있으면 그것을 그대로 따른다.
-2. 저장소 내 `docs/templates/architecture-template.md` 또는 사용자가 지정한 경로에 템플릿이 있으면 Glob/Grep으로 찾아 그것을 따른다.
-3. 위 두 가지가 모두 없으면 "4. 기본 아키텍처 설계서 템플릿(Default)"을 사용하되, 산출물 상단에 "프로젝트 지정 템플릿이 없어 기본 템플릿을 사용함"이라고 명시한다.
+2. 저장소의 표준 산출물 템플릿(`WP_Templates/`)을 사용한다. 세부 위치·형식별 처리 방법·라이선스 주의사항은 `references/templates.md`를 반드시 먼저 읽고 따른다. 핵심 템플릿:
+   - SW 아키텍처 설계서: `WP_Templates/Engineering/SoftwareArchitecturalDesign/TPL-SWE2-001_SW 아키텍처 설계서 템플릿.docx`
+   - SW 아키텍처 UML: `WP_Templates/Engineering/SoftwareArchitecturalDesign/TPL-SWE2-002_SW 아키텍처 UML 템플릿.drawio`
+   - 양방향 추적 매트릭스(요구사항-아키텍처 연계): `WP_Templates/Engineering/Traceability/TPL-TRC-001_양방향 요구사항 추적 매트릭스 템플릿.xlsx`
+   - 전체 템플릿 목록과 적용 산출물 매핑은 `WP_Templates/PRC-TPL-001_표준 산출물 양식 등록부.xlsx`를 따른다.
+3. 위 템플릿 파일을 저장소에서 찾을 수 없는 경우에만 "4. 기본 아키텍처 설계서 템플릿(Default)"을 사용하되, 산출물 상단에 "표준 템플릿을 찾지 못해 기본 템플릿을 사용함"이라고 명시한다.
 
 ## 1. 준수 표준 요약
 

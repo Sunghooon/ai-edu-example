@@ -12,10 +12,15 @@ description: ISO 26262와 Automotive SPICE(A-SPICE) 4.1(SYS.1/SYS.2/SWE.1)을 �
 요구사항을 작성하기 전에 반드시 다음 순서로 템플릿을 확인한다.
 
 1. 사용자가 이번 대화에서 직접 제시한 템플릿이 있으면 그것을 그대로 따른다.
-2. 저장소 내 `docs/templates/requirements-template.md` 또는 사용자가 지정한 경로에 템플릿 파일이 있으면 Glob/Grep으로 탐색하여 그것을 따른다.
-3. 위 두 가지가 모두 없으면 아래 "3. 기본 요구사항 템플릿(Default)"을 사용하되, 결과물 상단에 "프로젝트 지정 템플릿이 없어 기본 템플릿을 사용함"이라고 명시한다.
+2. 저장소의 표준 산출물 템플릿(`WP_Templates/`)을 사용한다. 세부 위치·형식별 처리 방법·라이선스 주의사항은 `references/templates.md`를 반드시 먼저 읽고 따른다. 핵심 템플릿:
+   - SW 요구사항 명세서: `WP_Templates/Engineering/SoftwareRequirementsAnalysis/TPL-SWE1-001_SW 요구사항 명세서 템플릿.docx`
+   - Use Case 명세서: `WP_Templates/Engineering/SoftwareRequirementsAnalysis/TPL-SWE1-002_Use Case 명세서 템플릿.docx`
+   - Use Case 다이어그램: `WP_Templates/Engineering/SoftwareRequirementsAnalysis/TPL-SWE1-003_Use Case 다이어그램 템플릿.drawio`
+   - 양방향 추적 매트릭스: `WP_Templates/Engineering/Traceability/TPL-TRC-001_양방향 요구사항 추적 매트릭스 템플릿.xlsx`
+   - 전체 템플릿 목록과 적용 산출물 매핑은 `WP_Templates/PRC-TPL-001_표준 산출물 양식 등록부.xlsx`를 따른다.
+3. 위 템플릿 파일을 저장소에서 찾을 수 없는 경우에만 아래 "3. 기본 요구사항 템플릿(Default)"을 사용하되, 결과물 상단에 "표준 템플릿을 찾지 못해 기본 템플릿을 사용함"이라고 명시한다.
 
-프로젝트 템플릿이 나중에 제공되면 그 즉시 우선순위 1번으로 전환하고, 기존에 기본 템플릿으로 작성된 산출물은 새 템플릿에 맞게 갱신이 필요함을 사용자에게 알린다.
+사용자가 이번 대화에서 별도 템플릿을 제시하면 그 즉시 우선순위 1번으로 전환하고, 기존에 다른 템플릿으로 작성된 산출물은 새 템플릿에 맞게 갱신이 필요함을 사용자에게 알린다.
 
 ## 1. 준수 표준 요약
 
