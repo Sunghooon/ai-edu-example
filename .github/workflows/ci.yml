@@ -1,0 +1,70 @@
+name: CI
+
+# 참고: 함수 순수코드라인(50줄 이하), Doxygen 주석 비율(20% 이상), 네이밍(3글자 이상 camelCase)은
+# 신뢰할 만한 오픈소스 CI 게이트 도구가 마땅치 않아 아직 이 워크플로에서 자동 검사하지 않는다.
+# 이 세 가지는 `coding` 서브에이전트가 `implementation` 스킬에 따라 작성 시점에 확인한다.
+# 필요하면 이후 전용 도구를 추가해 CI에도 편입할 수 있다.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint-test:
+    name: Lint, complexity, unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
+      - name: Detect Python sources
+        id: detect
+        run: |
+          if git ls-files '*.py' | grep -q .; then
+            echo "has_python=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_python=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install dependencies
+        if: steps.detect.outputs.has_python == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install flake8 xenon coverage
+
+      # CLAUDE.md 구현 지침: 오픈소스 도구로 스타일을 점검한다.
+      - name: Lint (flake8)
+        if: steps.detect.outputs.has_python == 'true'
+        run: flake8 . --max-line-length=120
+
+      # CLAUDE.md 구현 지침: 함수 순환복잡도 10 이하 (radon 등급 B까지 허용).
+      - name: Cyclomatic complexity gate (xenon/radon, max 10)
+        if: steps.detect.outputs.has_python == 'true'
+        run: xenon --max-absolute B --max-modules B --max-average A .
+
+      # CLAUDE.md 단위 테스트 지침: TDD로 작성한 unittest 전체 실행, 성공률 100%.
+      # CLAUDE.md 단위 테스트 지침: Branch 커버리지 100%.
+      - name: Unit tests with branch coverage (target 100%)
+        if: steps.detect.outputs.has_python == 'true'
+        run: |
+          coverage run --branch -m unittest discover -v
+          coverage report -m --fail-under=100
+
+      - name: No Python sources yet
+        if: steps.detect.outputs.has_python == 'false'
+        run: echo "저장소에 아직 .py 파일이 없어 lint/복잡도/테스트 단계를 건너뜁니다. 코드가 추가되면 이 워크플로가 자동으로 검사합니다."

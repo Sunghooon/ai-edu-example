@@ -51,3 +51,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - 시스템 테스트는 sw-system-tester가 수행한다.
 - 테스트 성공률은 100%여야 한다.
+
+## Git 브랜치 정책
+
+- `main`은 보호 브랜치다. `main`에 직접 커밋/푸시하지 않고, 모든 변경은 브랜치를 만들어 Pull Request로 병합한다.
+- 브랜치 이름은 목적을 접두사로 표기한다: `feature/<설명>`(기능), `fix/<설명>`(버그 수정), `chore/<설명>`(잡무/설정), `docs/<설명>`(문서).
+- PR을 열거나 갱신하면(`opened`/`synchronize`/`reopened`) `.github/workflows/ci.yml`의 CI 워크플로가 자동 실행되어 지속적 통합/지속적 테스트를 수행한다: lint(flake8), 순환복잡도 게이트(xenon, 함수당 10 이하), `unittest` 전체 실행과 Branch 커버리지 100% 목표 확인.
+- CI 상태 체크(`Lint, complexity, unit tests`)가 통과해야만 `main`으로 병합할 수 있도록 GitHub 저장소 설정(Settings → Branches → Branch protection rules)에서 `main`에 대해 다음을 적용한다: "Require a pull request before merging", "Require status checks to pass before merging"(위 체크 선택), "Require branches to be up to date before merging". 이 설정은 GitHub 저장소 관리 권한이 필요해 이 저장소에서 직접 적용하지 못했으므로, 저장소 관리자가 한 번 적용해야 한다.
+- 병합 방식은 Squash merge를 기본으로 하고, 병합 후 브랜치를 삭제한다(히스토리를 깔끔하게 유지).
+- `main`에 대한 force-push는 하지 않는다.
