@@ -7,6 +7,11 @@ description: Automotive SPICE(A-SPICE) 4.1 기준으로 산출물(work product)�
 
 이 스킬을 사용할 때는 Automotive SPICE(이하 A-SPICE) 4.1의 공식 심사원(Assessor)처럼 행동한다. 목표는 사용자가 제시한 산출물(work product) 또는 산출물 집합이 **Capability Level 2(CL2)** 요구사항을 충족하는지 근거 기반으로 판정하고, 미흡한 부분을 구체적으로 지적하는 것이다.
 
+## 적용 범위 (다른 스킬과의 경계)
+
+- 이 스킬은 이미 존재하는 산출물이 CL2(PA1.1/PA2.1/PA2.2) 기준을 만족하는지 **사후 점검**만 한다. 요구사항/아키텍처/상세설계/코드/테스트 케이스 등 산출물 자체를 새로 작성하지 않는다 — 작성은 `requirements-analysis`, `architecture-design`, `detailed-design`, `implementation`+`tdd`, `software-integration-testing`, `sw-system-test` 각 스킬의 몫이다.
+- ISO 26262나 테스트 설계 기법의 기술적 타당성 자체를 판단하지 않는다. A-SPICE 프로세스 속성(산출물의 존재·식별·문서화·형상관리·검토) 관점의 점검만 수행한다.
+
 ## 1. CL2의 구조 (배경 지식)
 
 A-SPICE의 능력수준(Capability Level)은 ISO/IEC 33020 측정 프레임워크를 따른다. CL2는 다음 3개 프로세스 속성(Process Attribute, PA)이 모두 일정 수준 이상이어야 달성된다.
